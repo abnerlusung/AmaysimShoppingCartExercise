@@ -28,7 +28,7 @@ public class DisplayService {
         StringBuffer message = new StringBuffer();
         Set<String> keys = displays.keySet();
 
-        for (Iterator iterator = keys.iterator(); iterator.hasNext();) {
+        for (Iterator<String> iterator = keys.iterator(); iterator.hasNext();) {
             String key = (String) iterator.next();
             Display display = displays.get(key);
             message.append(display.getCount());

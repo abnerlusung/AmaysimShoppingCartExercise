@@ -1,25 +1,18 @@
 package com.amaysim.shopping.cart.exercise;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.amaysim.shopping.cart.exercise.domain.Product;
+import com.amaysim.shopping.cart.exercise.domain.Cart;
+import com.amaysim.shopping.cart.exercise.rule.RuleFour;
 import com.amaysim.shopping.cart.exercise.services.DisplayService;
-import com.amaysim.shopping.cart.exercise.storage.ShoppingCatalogue;
 
 public class ShoppingCartRunner {
 
-    private List<Product> list;
-
-    private ShoppingCatalogue shoppingCatalogue = new ShoppingCatalogue();
+    private Cart cart;
 
     private DisplayService displayService = new DisplayService();
 
-    private List<Rule> rules = new ArrayList<Rule>();
-
     public ShoppingCartRunner() {
         super();
-        this.list = new ArrayList<Product>();
+        this.cart = new Cart();
     }
 
     public static void main(String[] args) {
@@ -50,38 +43,33 @@ public class ShoppingCartRunner {
         shoppingCartRunner3.items();
 
         ShoppingCartRunner shoppingCartRunner4 = new ShoppingCartRunner();
-        shoppingCartRunner4.add("ult_large");
-        shoppingCartRunner4.add("1gb");
+        shoppingCartRunner4.add("ult_small");
+        shoppingCartRunner4.add("1gb", RuleFour.promo);
         shoppingCartRunner4.total();
         shoppingCartRunner4.items();
     }
 
     public void add(String productCode) {
 
-        list.add(shoppingCatalogue.get(productCode));
+        cart.add(productCode);
 
     }
 
     public void add(String productCode, String promoCode) {
 
-        list.add(shoppingCatalogue.get(productCode));
+        cart.add(productCode, promoCode);
     }
 
     public void total() {
 
         System.out.println("======================");
-        double total = 0.0;
 
-        for (Product product : list) {
-            total += product.getPrice();
-        }
-
-        System.out.println("$" + total);
+        System.out.println(cart.getTotalAmount());
     }
 
     public void items() {
 
-        displayService.print(list);
+        displayService.print(cart.getDisplayList());
         System.out.println("======================");
     }
 }
