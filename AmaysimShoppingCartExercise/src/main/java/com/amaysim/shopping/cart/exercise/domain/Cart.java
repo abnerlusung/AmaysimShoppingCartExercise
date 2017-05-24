@@ -1,13 +1,14 @@
 package com.amaysim.shopping.cart.exercise.domain;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.amaysim.shopping.cart.exercise.services.CatalogueService;
+import com.amaysim.shopping.cart.exercise.services.CatalogueServiceImpl;
 
 public class Cart {
 
-    private CatalogueService catalogueService = new CatalogueService();
+    private CatalogueServiceImpl catalogueService = new CatalogueServiceImpl();
 
     private List<Product> list;
 
@@ -47,6 +48,7 @@ public class Cart {
 
     public String getTotalAmount() {
 
+        NumberFormat formatter = NumberFormat.getNumberInstance();
         double total = 0.0;
 
         for (Product product : this.getDisplayList()) {
@@ -57,6 +59,6 @@ public class Cart {
             total = 0.9 * total;
         }
 
-        return total + "";
+        return formatter.format(total) + "";
     }
 }

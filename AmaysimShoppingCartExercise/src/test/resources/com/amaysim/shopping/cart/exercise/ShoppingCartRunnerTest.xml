@@ -8,20 +8,6 @@
       http://www.springframework.org/schema/context/spring-context-3.0.xsd  
       http://www.springframework.org/schema/tx 
       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
-
-    
-    <bean id="userMappingDao" class="org.easymock.EasyMock" factory-method="createMock">
-        <qualifier value="userMappingDao" />
-        <constructor-arg value="STRICT" index="0" />
-        <constructor-arg
-            value="com.accenture.aswhcm.sol21c.copy.dao.UserMappingDao"
-            index="1" />
-    </bean>
-
-    <bean id="userMappingService"
-      class="com.accenture.aswhcm.sol21c.copy.service.UserMappingServiceImpl">
-      <property name="userMappingDao" ref="userMappingDao" />
-    </bean>
   
     <context:annotation-config />
 

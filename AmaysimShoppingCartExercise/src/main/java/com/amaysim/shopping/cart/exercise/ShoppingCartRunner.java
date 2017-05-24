@@ -2,13 +2,13 @@ package com.amaysim.shopping.cart.exercise;
 
 import com.amaysim.shopping.cart.exercise.domain.Cart;
 import com.amaysim.shopping.cart.exercise.rule.RuleFour;
-import com.amaysim.shopping.cart.exercise.services.DisplayService;
+import com.amaysim.shopping.cart.exercise.services.DisplayServiceImpl;
 
 public class ShoppingCartRunner {
 
     private Cart cart;
 
-    private DisplayService displayService = new DisplayService();
+    private DisplayServiceImpl displayService = new DisplayServiceImpl();
 
     public ShoppingCartRunner() {
         super();

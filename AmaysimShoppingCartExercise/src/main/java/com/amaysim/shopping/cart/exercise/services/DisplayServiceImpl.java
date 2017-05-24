@@ -9,7 +9,8 @@ import java.util.Set;
 import com.amaysim.shopping.cart.exercise.domain.Display;
 import com.amaysim.shopping.cart.exercise.domain.Product;
 
-public class DisplayService {
+public class DisplayServiceImpl
+    implements DisplayService {
 
     public void print(List<Product> list) {
 
