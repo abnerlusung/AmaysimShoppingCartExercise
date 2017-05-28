@@ -1,12 +1,12 @@
-package com.amaysim.shopping.cart.exercise.services;
+package com.amaysim.shopping.cart.exercise.catalogue;
 
+import com.amaysim.shopping.cart.exercise.dao.ShoppingCatalogueDaoImpl;
 import com.amaysim.shopping.cart.exercise.domain.Product;
-import com.amaysim.shopping.cart.exercise.storage.ShoppingCatalogue;
 
 public class CatalogueServiceImpl
     implements CatalogueService {
 
-    private ShoppingCatalogue shoppingCatalogue = ShoppingCatalogue.getInstance();
+    private ShoppingCatalogueDaoImpl shoppingCatalogue = ShoppingCatalogueDaoImpl.getInstance();
 
     public Product get(String itemCode) {
 

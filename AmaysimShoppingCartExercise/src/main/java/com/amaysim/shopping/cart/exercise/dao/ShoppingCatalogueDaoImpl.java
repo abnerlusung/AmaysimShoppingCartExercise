@@ -1,17 +1,18 @@
-package com.amaysim.shopping.cart.exercise.storage;
+package com.amaysim.shopping.cart.exercise.dao;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import com.amaysim.shopping.cart.exercise.domain.Product;
 
-public class ShoppingCatalogue {
+public class ShoppingCatalogueDaoImpl
+    implements ShoppingCatalogueDao {
 
     private Map<String, Product> catalogue;
 
-    private final static ShoppingCatalogue shoppingCatalogue = new ShoppingCatalogue();
+    private final static ShoppingCatalogueDaoImpl shoppingCatalogue = new ShoppingCatalogueDaoImpl();
 
-    private ShoppingCatalogue() {
+    private ShoppingCatalogueDaoImpl() {
         catalogue = new HashMap<String, Product>();
         catalogue.put("ult_small", new Product("ult_small", "Unlimited 1GB", 24.90));
         catalogue.put("ult_medium", new Product("ult_medium", "Unlimited 2GB", 29.90));
@@ -19,7 +20,7 @@ public class ShoppingCatalogue {
         catalogue.put("1gb", new Product("1gb", "1 GB Data-pack", 9.90));
     }
 
-    public static ShoppingCatalogue getInstance() {
+    public static ShoppingCatalogueDaoImpl getInstance() {
 
         return shoppingCatalogue;
     }

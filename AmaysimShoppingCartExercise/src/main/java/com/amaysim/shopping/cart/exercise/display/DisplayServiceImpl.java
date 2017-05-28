@@ -1,4 +1,4 @@
-package com.amaysim.shopping.cart.exercise.services;
+package com.amaysim.shopping.cart.exercise.display;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -9,10 +9,14 @@ import java.util.Set;
 import com.amaysim.shopping.cart.exercise.domain.Display;
 import com.amaysim.shopping.cart.exercise.domain.Product;
 
+/**
+ *
+ *
+ */
 public class DisplayServiceImpl
     implements DisplayService {
 
-    public void print(List<Product> list) {
+    public String print(List<Product> list) {
 
         Map<String, Display> displays = new HashMap<String, Display>();
 
@@ -20,7 +24,7 @@ public class DisplayServiceImpl
             add(product, displays);
         }
 
-        System.out.println(getDisplay(displays));
+        return getDisplay(displays);
 
     }
 

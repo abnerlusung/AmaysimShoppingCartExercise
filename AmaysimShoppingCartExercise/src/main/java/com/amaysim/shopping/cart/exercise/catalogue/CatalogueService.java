@@ -1,4 +1,4 @@
-package com.amaysim.shopping.cart.exercise.services;
+package com.amaysim.shopping.cart.exercise.catalogue;
 
 import com.amaysim.shopping.cart.exercise.domain.Product;
 
