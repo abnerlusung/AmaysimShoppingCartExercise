@@ -6,22 +6,22 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.amaysim.shopping.cart.exercise.catalogue.CatalogueServiceImpl;
+import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 import com.amaysim.shopping.cart.exercise.rule.Offer;
 
 public class ComputeServiceImpl
     implements ComputeService {
 
-    private CatalogueServiceImpl catalogueService;
+    private CatalogueService catalogueService;
 
-    public CatalogueServiceImpl getCatalogueService() {
+    public CatalogueService getCatalogueService() {
 
         return catalogueService;
     }
 
     @Autowired
-    public void setCatalogueService(CatalogueServiceImpl catalogueService) {
+    public void setCatalogueService(CatalogueService catalogueService) {
 
         this.catalogueService = catalogueService;
     }
@@ -41,6 +41,12 @@ public class ComputeServiceImpl
 
     public ComputeServiceImpl() {
         super();
+    }
+
+    public ComputeServiceImpl(CatalogueService catalogue, List<Offer> offers) {
+        super();
+        this.catalogueService = catalogue;
+        this.offers = offers;
     }
 
     @Override

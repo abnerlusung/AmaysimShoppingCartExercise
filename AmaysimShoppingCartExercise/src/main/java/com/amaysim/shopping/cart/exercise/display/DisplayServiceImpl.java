@@ -17,6 +17,10 @@ public class DisplayServiceImpl
 
     private CatalogueService catalogueService;
 
+    public DisplayServiceImpl(CatalogueService catalogue) {
+        this.catalogueService = catalogue;
+    }
+
     public CatalogueService getCatalogueService() {
 
         return catalogueService;
