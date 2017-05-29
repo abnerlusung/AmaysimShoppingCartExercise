@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <context:annotation-config />
+
+    <bean id="cart" class="com.amaysim.shopping.cart.exercise.CartServiceImpl" >
+        <property name="displayService" ref="displayServiceImpl"/>
+        <property name="computeService" ref="computeServiceImpl"/>
+    </bean>
+    
+     <bean id="catalogueServiceImpl" class="com.amaysim.shopping.cart.exercise.catalogue.CatalogueServiceImpl" >
+        <property name="shoppingCatalogue" ref="shoppingCatalogueDaoImpl"/>
+    </bean>
+    
+    <bean id="displayServiceImpl" class="com.amaysim.shopping.cart.exercise.display.DisplayServiceImpl" >
+        <property name="catalogueService" ref="catalogueServiceImpl" />
+    </bean>
+
+    <bean id="ruleOne" class="com.amaysim.shopping.cart.exercise.rule.RuleOne" >
+        <property name="catalogueService" ref="catalogueServiceImpl" />
+    </bean>
+
+    <bean id="ruleTwo" class="com.amaysim.shopping.cart.exercise.rule.RuleTwo" />
+
+    <bean id="computeServiceImpl" class="com.amaysim.shopping.cart.exercise.compute.ComputeServiceImpl" >
+        <property name="catalogueService" ref="catalogueServiceImpl" />
+        <property name="offers">
+            <list>
+                <ref bean="ruleOne"/>
+                <ref bean="ruleTwo"/>
+            </list>
+        </property>
+    </bean>
+
+     <bean id="shoppingCatalogueDaoImpl" class="com.amaysim.shopping.cart.exercise.dao.ShoppingCatalogueDaoImpl" />
+</beans>

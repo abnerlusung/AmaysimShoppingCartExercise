@@ -27,8 +27,14 @@ public class RuleTwo
     @Override
     public Double apply(Map<String, Integer> list, List<ProductChecker> checklist) {
 
-        int count = list.get("ult_large");
-        double amountToBePaid = count * NEW_PRICE;
+        int count = 0;
+        double amountToBePaid;
+
+        if (list.get("ult_large") != null) {
+            count = list.get("ult_large");
+        }
+
+        amountToBePaid = count * NEW_PRICE;
 
         for (ProductChecker p : checklist) {
             if ("ult_large".equalsIgnoreCase(p.getCode())) {
@@ -46,7 +52,7 @@ public class RuleTwo
 
     private boolean isProductCount(Map<String, Integer> list) {
 
-        boolean isValid = true;
+        boolean isValid = false;
         int count;
         if (list.get("ult_large") != null) {
             count = list.get("ult_large");

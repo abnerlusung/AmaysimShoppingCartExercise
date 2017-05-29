@@ -9,11 +9,21 @@ import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 public class RuleOne
     implements Offer {
 
-    private CatalogueServiceImpl catalogueService = new CatalogueServiceImpl();
-
     private final int PRODUCT_COUNT_TO_BE_PAID = 2;
 
     private final int PRODUCT_COUNT_CRITERIA = 3;
+
+    private CatalogueServiceImpl catalogueService;
+
+    public CatalogueServiceImpl getCatalogueService() {
+
+        return catalogueService;
+    }
+
+    public void setCatalogueService(CatalogueServiceImpl catalogueService) {
+
+        this.catalogueService = catalogueService;
+    }
 
     @Override
     public boolean check(Map<String, Integer> list) {
@@ -30,13 +40,21 @@ public class RuleOne
     @Override
     public Double apply(Map<String, Integer> list, List<ProductChecker> checklist) {
 
-        int count = list.get("ult_small");
-        int threes = count / PRODUCT_COUNT_CRITERIA;
+        int count = 0;
+        int threes;
         double price = catalogueService.get("ult_small")
             .getPrice();
-        double amountToBePaid = price * PRODUCT_COUNT_TO_BE_PAID * threes;
+        double amountToBePaid;
         int ctr = 1;
-        int ctrFlag = PRODUCT_COUNT_CRITERIA * threes;
+        int ctrFlag;
+
+        if (list.get("ult_small") != null) {
+            count = list.get("ult_small");
+        }
+        threes = count / PRODUCT_COUNT_CRITERIA;
+        amountToBePaid = price * PRODUCT_COUNT_TO_BE_PAID * threes;
+        ctrFlag = PRODUCT_COUNT_CRITERIA * threes;
+
         for (ProductChecker p : checklist) {
             if (ctr <= ctrFlag && p.getCode()
                 .equalsIgnoreCase("ult_small")) {

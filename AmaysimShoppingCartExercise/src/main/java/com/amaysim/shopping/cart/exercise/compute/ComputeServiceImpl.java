@@ -4,25 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.amaysim.shopping.cart.exercise.catalogue.CatalogueServiceImpl;
 import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 import com.amaysim.shopping.cart.exercise.rule.Offer;
-import com.amaysim.shopping.cart.exercise.rule.RuleOne;
-import com.amaysim.shopping.cart.exercise.rule.RuleTwo;
 
 public class ComputeServiceImpl
     implements ComputeService {
 
-    private CatalogueServiceImpl catalogueService = new CatalogueServiceImpl();
+    private CatalogueServiceImpl catalogueService;
+
+    public CatalogueServiceImpl getCatalogueService() {
+
+        return catalogueService;
+    }
+
+    @Autowired
+    public void setCatalogueService(CatalogueServiceImpl catalogueService) {
+
+        this.catalogueService = catalogueService;
+    }
 
     private List<Offer> offers;
 
+    public List<Offer> getOffers() {
+
+        return offers;
+    }
+
+    @Autowired
+    public void setOffers(List<Offer> offers) {
+
+        this.offers = offers;
+    }
+
     public ComputeServiceImpl() {
         super();
-        this.offers = new ArrayList<Offer>();
-        this.offers.add(new RuleOne());
-        this.offers.add(new RuleTwo());
-
     }
 
     @Override

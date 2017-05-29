@@ -1,16 +1,29 @@
 package com.amaysim.shopping.cart.exercise.catalogue;
 
-import com.amaysim.shopping.cart.exercise.dao.ShoppingCatalogueDaoImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.amaysim.shopping.cart.exercise.dao.ShoppingCatalogueDao;
 import com.amaysim.shopping.cart.exercise.domain.Product;
 
 public class CatalogueServiceImpl
     implements CatalogueService {
 
-    private ShoppingCatalogueDaoImpl shoppingCatalogue = ShoppingCatalogueDaoImpl.getInstance();
+    private ShoppingCatalogueDao shoppingCatalogue;
+
+    public ShoppingCatalogueDao getShoppingCatalogue() {
+
+        return shoppingCatalogue;
+    }
+
+    @Autowired
+    public void setShoppingCatalogue(ShoppingCatalogueDao shoppingCatalogue) {
+
+        this.shoppingCatalogue = shoppingCatalogue;
+    }
 
     public Product get(String itemCode) {
 
-        return shoppingCatalogue.get(itemCode);
+        return getShoppingCatalogue().get(itemCode);
     }
 
 }

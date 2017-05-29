@@ -1,8 +1,6 @@
 package com.amaysim.shopping.cart.exercise.display;
 
-import java.util.List;
-
-import com.amaysim.shopping.cart.exercise.domain.Product;
+import java.util.Map;
 
 public interface DisplayService {
 
@@ -10,5 +8,5 @@ public interface DisplayService {
      * 
      * @param list
      */
-    String print(List<Product> list);
+    String print(Map<String, Integer> list);
 }
