@@ -10,10 +10,16 @@
       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
  
   
-    <bean id="cart" class="org.easymock.EasyMock" factory-method="createMock">
-        <qualifier value ="cart" />
+    <bean id="displayService" class="org.easymock.EasyMock" factory-method="createMock">
+        <qualifier value ="displayService" />
         <constructor-arg value="STRICT" index="0" />
-        <constructor-arg value="com.amaysim.shopping.cart.exercise.CartService" index="1"/>
+        <constructor-arg value="com.amaysim.shopping.cart.exercise.display.DisplayService" index="1"/>
+    </bean>
+    
+    <bean id="computeService" class="org.easymock.EasyMock" factory-method="createMock">
+        <qualifier value ="computeService" />
+        <constructor-arg value="STRICT" index="0" />
+        <constructor-arg value="com.amaysim.shopping.cart.exercise.compute.ComputeService" index="1"/>
     </bean>
 
   

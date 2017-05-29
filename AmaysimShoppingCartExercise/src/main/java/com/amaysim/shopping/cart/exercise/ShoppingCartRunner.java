@@ -10,15 +10,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class ShoppingCartRunner {
 
-    private CartServiceImpl cart;
+    private CartService cart;
 
-    public CartServiceImpl getCart() {
+    public CartService getCart() {
 
         return cart;
     }
 
     @Autowired
-    public void setCart(CartServiceImpl cart) {
+    public void setCart(CartService cart) {
 
         this.cart = cart;
         this.cart.reset();

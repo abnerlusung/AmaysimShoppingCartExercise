@@ -9,10 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.amaysim.shopping.cart.exercise.compute.ComputeService;
 import com.amaysim.shopping.cart.exercise.display.DisplayService;
 
-/**
- * 
- * 
- */
 public class CartServiceImpl
     implements CartService {
 
@@ -48,6 +44,12 @@ public class CartServiceImpl
 
     public CartServiceImpl() {
         this.list = new HashMap<String, Integer>();
+    }
+
+    public CartServiceImpl(ComputeService computeService, DisplayService displayService) {
+        this.list = new HashMap<String, Integer>();
+        this.computeService = computeService;
+        this.displayService = displayService;
     }
 
     public void addProduct(String itemCode) {
