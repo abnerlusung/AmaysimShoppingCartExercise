@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.compute.ComputeService;
 import com.amaysim.shopping.cart.exercise.display.DisplayService;
-import com.amaysim.shopping.cart.exercise.rule.RuleFour;
+import com.amaysim.shopping.cart.exercise.rule.Offer;
 import com.amaysim.shopping.cart.exercise.rule.RuleThree;
 
 public class CartServiceImpl
@@ -25,11 +25,11 @@ public class CartServiceImpl
     private ComputeService computeService;
 
     @Autowired
-    private RuleFour freeRule;
+    private Offer freeRule;
 
-    private RuleThree promoRule;
+    private Offer promoRule;
 
-    public RuleThree getPromoRule() {
+    public Offer getPromoRule() {
 
         return promoRule;
     }
@@ -79,11 +79,12 @@ public class CartServiceImpl
         this.freeItems = new HashMap<String, Integer>();
     }
 
-    public CartServiceImpl(ComputeService computeService, DisplayService displayService,
+    public CartServiceImpl(Offer freeRule, ComputeService computeService, DisplayService displayService,
                            CatalogueService catalogueService) {
         super();
         this.purchasedItems = new HashMap<String, Integer>();
         this.freeItems = new HashMap<String, Integer>();
+        this.freeRule = freeRule;
         this.computeService = computeService;
         this.displayService = displayService;
         this.catalogueService = catalogueService;

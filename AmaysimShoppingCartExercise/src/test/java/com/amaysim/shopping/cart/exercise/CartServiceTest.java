@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.compute.ComputeService;
 import com.amaysim.shopping.cart.exercise.display.DisplayService;
+import com.amaysim.shopping.cart.exercise.rule.Offer;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:com/amaysim/shopping/cart/exercise/CartServiceTest.xml")
@@ -32,26 +33,35 @@ public class CartServiceTest {
     @Qualifier("catalogueService")
     private CatalogueService catalogueService;
 
+    @Autowired
+    @Qualifier("freeRule")
+    private Offer freeRule;
+
     private CartService cart;
 
     @Before
     public void setup() {
 
-        EasyMock.reset(computeService, displayService, catalogueService);
-        cart = new CartServiceImpl(computeService, displayService, catalogueService);
+        EasyMock.reset(freeRule, computeService, displayService, catalogueService);
+        cart = new CartServiceImpl(freeRule, computeService, displayService, catalogueService);
 
     }
 
     @Test
     public void test_addProduct() {
 
+        EasyMock.expect(catalogueService.isExist(EasyMock.anyString()))
+            .andReturn(true);
+        EasyMock.replay(catalogueService);
         cart.addProduct("ult_small");
+
+        EasyMock.verify(catalogueService);
     }
 
     @Test
     public void test_addPromoCode() {
 
-        cart.addProduct("I<3AMAYSIM");
+        cart.addPromoCode("I<3AMAYSIM");
     }
 
     @Test

@@ -27,6 +27,12 @@
         <constructor-arg value="STRICT" index="0" />
         <constructor-arg value="com.amaysim.shopping.cart.exercise.catalogue.CatalogueService" index="1"/>
     </bean>
+    
+     <bean id="freeRule" class="org.easymock.EasyMock" factory-method="createMock">
+        <qualifier value ="freeRule" />
+        <constructor-arg value="STRICT" index="0" />
+        <constructor-arg value="com.amaysim.shopping.cart.exercise.rule.Offer" index="1"/>
+    </bean>
   
     <context:annotation-config />
 

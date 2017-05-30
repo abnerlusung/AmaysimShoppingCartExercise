@@ -28,7 +28,7 @@
 
     <bean id="ruleTwo" class="com.amaysim.shopping.cart.exercise.rule.RuleTwo" />
     
-    <bean id="ruleFour" class="com.amaysim.shopping.cart.exercise.rule.RuleFour" />
+    <bean id="freeRule" class="com.amaysim.shopping.cart.exercise.rule.RuleFour" />
 
     <bean id="computeServiceImpl" class="com.amaysim.shopping.cart.exercise.compute.ComputeServiceImpl" >
         <property name="catalogueService" ref="catalogueServiceImpl" />
