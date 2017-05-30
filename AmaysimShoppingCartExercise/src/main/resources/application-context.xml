@@ -8,9 +8,10 @@
 
     <context:annotation-config />
 
-    <bean id="cart" class="com.amaysim.shopping.cart.exercise.CartServiceImpl" >
-        <property name="displayService" ref="displayServiceImpl"/>
-        <property name="computeService" ref="computeServiceImpl"/>
+    <bean id="cartService" class="com.amaysim.shopping.cart.exercise.CartServiceImpl" >
+        <property name="displayService" ref="displayServiceImpl" />
+        <property name="computeService" ref="computeServiceImpl" />
+        <property name="catalogueService" ref="catalogueServiceImpl" />
     </bean>
     
      <bean id="catalogueServiceImpl" class="com.amaysim.shopping.cart.exercise.catalogue.CatalogueServiceImpl" >
@@ -26,6 +27,8 @@
     </bean>
 
     <bean id="ruleTwo" class="com.amaysim.shopping.cart.exercise.rule.RuleTwo" />
+    
+    <bean id="ruleFour" class="com.amaysim.shopping.cart.exercise.rule.RuleFour" />
 
     <bean id="computeServiceImpl" class="com.amaysim.shopping.cart.exercise.compute.ComputeServiceImpl" >
         <property name="catalogueService" ref="catalogueServiceImpl" />

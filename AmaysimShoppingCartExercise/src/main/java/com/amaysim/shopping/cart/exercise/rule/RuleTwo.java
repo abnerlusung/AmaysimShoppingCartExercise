@@ -25,7 +25,7 @@ public class RuleTwo
     }
 
     @Override
-    public Double apply(Map<String, Integer> list, List<ProductChecker> checklist) {
+    public Double getNewAmount(Map<String, Integer> list, List<ProductChecker> checklist) {
 
         int count = 0;
         double amountToBePaid;
@@ -61,6 +61,13 @@ public class RuleTwo
             }
         }
         return isValid;
+    }
+
+    @Override
+    public boolean check() {
+
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

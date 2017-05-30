@@ -27,9 +27,9 @@ public class ShoppingCartRunner {
     public static void main(String[] args) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext(new String[] {"application-context.xml"});
-        CartServiceImpl cart = (CartServiceImpl) context.getBean("cart");
+        CartServiceImpl cartService = (CartServiceImpl) context.getBean("cartService");
         ShoppingCartRunner shoppingCartRunner1 = new ShoppingCartRunner();
-        shoppingCartRunner1.setCart(cart);
+        shoppingCartRunner1.setCart(cartService);
         shoppingCartRunner1.add("ult_small");
         shoppingCartRunner1.add("ult_small");
         shoppingCartRunner1.add("ult_small");
@@ -38,7 +38,7 @@ public class ShoppingCartRunner {
         shoppingCartRunner1.items();
 
         ShoppingCartRunner shoppingCartRunner2 = new ShoppingCartRunner();
-        shoppingCartRunner2.setCart(cart);
+        shoppingCartRunner2.setCart(cartService);
         shoppingCartRunner2.add("ult_small");
         shoppingCartRunner2.add("ult_small");
         shoppingCartRunner2.add("ult_large");
@@ -49,7 +49,7 @@ public class ShoppingCartRunner {
         shoppingCartRunner2.items();
 
         ShoppingCartRunner shoppingCartRunner3 = new ShoppingCartRunner();
-        shoppingCartRunner3.setCart(cart);
+        shoppingCartRunner3.setCart(cartService);
         shoppingCartRunner3.add("ult_small");
         shoppingCartRunner3.add("ult_medium");
         shoppingCartRunner3.add("ult_medium");
@@ -57,7 +57,7 @@ public class ShoppingCartRunner {
         shoppingCartRunner3.items();
 
         ShoppingCartRunner shoppingCartRunner4 = new ShoppingCartRunner();
-        shoppingCartRunner4.setCart(cart);
+        shoppingCartRunner4.setCart(cartService);
         shoppingCartRunner4.add("ult_small");
         shoppingCartRunner4.add("1gb", "I<3AMAYSIM");
         shoppingCartRunner4.total();
@@ -79,7 +79,6 @@ public class ShoppingCartRunner {
     public void total() {
 
         System.out.println("======================");
-
         System.out.println(getCart().getTotalAmount());
     }
 

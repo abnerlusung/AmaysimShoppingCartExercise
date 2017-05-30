@@ -51,4 +51,20 @@ public class DisplayServiceImpl
 
     }
 
+    @Override
+    public String print(Map<String, Integer> purchasedItems, Map<String, Integer> freeItems) {
+
+        StringBuffer displayList = new StringBuffer();
+        displayList.append(this.print(purchasedItems));
+        displayList.append("\n");
+        for (Map.Entry<String, Integer> entry : freeItems.entrySet()) {
+            displayList.append(entry.getValue());
+            displayList.append(" x ");
+            displayList.append(catalogueService.get(entry.getKey())
+                .getName());
+        }
+
+        return displayList.toString();
+    }
+
 }

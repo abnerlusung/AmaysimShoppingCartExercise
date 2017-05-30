@@ -23,4 +23,17 @@ public class ShoppingCatalogueDaoImpl
         return this.catalogue.get(productCode);
     }
 
+    @Override
+    public boolean isExist(String itemCode) {
+
+        boolean isValid = false;
+        Product product = catalogue.get(itemCode);
+
+        if (product != null) {
+            isValid = true;
+        }
+
+        return isValid;
+    }
+
 }

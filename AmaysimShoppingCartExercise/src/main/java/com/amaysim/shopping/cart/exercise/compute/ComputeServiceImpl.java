@@ -61,7 +61,7 @@ public class ComputeServiceImpl
         if (offers != null && offers.size() > 0) {
             for (Offer offer : offers) {
                 if (offer.check(list)) {
-                    total += offer.apply(list, checklist);
+                    total += offer.getNewAmount(list, checklist);
                 }
             }
         }

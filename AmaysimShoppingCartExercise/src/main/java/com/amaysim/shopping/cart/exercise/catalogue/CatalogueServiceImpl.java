@@ -31,4 +31,10 @@ public class CatalogueServiceImpl
         return getShoppingCatalogue().get(itemCode);
     }
 
+    @Override
+    public boolean isExist(String itemCode) {
+
+        return getShoppingCatalogue().isExist(itemCode);
+    }
+
 }

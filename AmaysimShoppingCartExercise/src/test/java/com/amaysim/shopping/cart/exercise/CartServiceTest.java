@@ -3,9 +3,6 @@ package com.amaysim.shopping.cart.exercise;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.easymock.EasyMock;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,6 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.compute.ComputeService;
 import com.amaysim.shopping.cart.exercise.display.DisplayService;
 
@@ -30,13 +28,17 @@ public class CartServiceTest {
     @Qualifier("displayService")
     private DisplayService displayService;
 
+    @Autowired
+    @Qualifier("catalogueService")
+    private CatalogueService catalogueService;
+
     private CartService cart;
 
     @Before
     public void setup() {
 
-        EasyMock.reset(computeService, displayService);
-        cart = new CartServiceImpl(computeService, displayService);
+        EasyMock.reset(computeService, displayService, catalogueService);
+        cart = new CartServiceImpl(computeService, displayService, catalogueService);
 
     }
 
@@ -84,13 +86,6 @@ public class CartServiceTest {
     public void test_reset() {
 
         cart.reset();
-    }
-
-    private Map<String, Integer> prepareList() {
-
-        Map<String, Integer> list = new HashMap<String, Integer>();
-        list.put("ult_small", 1);
-        return list;
     }
 
 }

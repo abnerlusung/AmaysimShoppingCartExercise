@@ -7,7 +7,28 @@ import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 
 public interface Offer {
 
+    /**
+     * Checks the condition of the offer
+     * 
+     * @param list
+     * @return
+     */
+    boolean check();
+
+    /**
+     * Checks the condition of the offer
+     * 
+     * @param list
+     * @return
+     */
     boolean check(Map<String, Integer> list);
 
-    Double apply(Map<String, Integer> list, List<ProductChecker> checklist);
+    /**
+     * Applies the amount changes
+     * 
+     * @param list
+     * @param checklist
+     * @return the new amount to be paid for a certain items in the product list
+     */
+    Double getNewAmount(Map<String, Integer> list, List<ProductChecker> checklist);
 }

@@ -6,17 +6,38 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.compute.ComputeService;
 import com.amaysim.shopping.cart.exercise.display.DisplayService;
+import com.amaysim.shopping.cart.exercise.rule.RuleFour;
+import com.amaysim.shopping.cart.exercise.rule.RuleThree;
 
 public class CartServiceImpl
     implements CartService {
+
+    @Autowired
+    private CatalogueService catalogueService;
 
     @Autowired
     private DisplayService displayService;
 
     @Autowired
     private ComputeService computeService;
+
+    @Autowired
+    private RuleFour freeRule;
+
+    private RuleThree promoRule;
+
+    public RuleThree getPromoRule() {
+
+        return promoRule;
+    }
+
+    public void setPromoRule(RuleThree promoRule) {
+
+        this.promoRule = promoRule;
+    }
 
     public DisplayService getDisplayService() {
 
@@ -38,18 +59,34 @@ public class CartServiceImpl
         this.computeService = computeService;
     }
 
-    private Map<String, Integer> list;
+    public CatalogueService getCatalogueService() {
 
-    private String promoCode;
-
-    public CartServiceImpl() {
-        this.list = new HashMap<String, Integer>();
+        return catalogueService;
     }
 
-    public CartServiceImpl(ComputeService computeService, DisplayService displayService) {
-        this.list = new HashMap<String, Integer>();
+    public void setCatalogueService(CatalogueService catalogueService) {
+
+        this.catalogueService = catalogueService;
+    }
+
+    private Map<String, Integer> freeItems;
+
+    private Map<String, Integer> purchasedItems;
+
+    public CartServiceImpl() {
+        super();
+        this.purchasedItems = new HashMap<String, Integer>();
+        this.freeItems = new HashMap<String, Integer>();
+    }
+
+    public CartServiceImpl(ComputeService computeService, DisplayService displayService,
+                           CatalogueService catalogueService) {
+        super();
+        this.purchasedItems = new HashMap<String, Integer>();
+        this.freeItems = new HashMap<String, Integer>();
         this.computeService = computeService;
         this.displayService = displayService;
+        this.catalogueService = catalogueService;
     }
 
     public void addProduct(String itemCode) {
@@ -58,17 +95,21 @@ public class CartServiceImpl
             // throw exception
         }
 
-        // boolean is2gb = itemCode.equalsIgnoreCase("ult_medium");
-        addToList(itemCode);
+        addToList(itemCode, purchasedItems);
 
-        // if (is2gb) {
-        // addToList("1gb");
-        // }
+        if (freeRule.check(purchasedItems)) {
+            addToList("ult_medium", freeItems);
+        }
+
     }
 
-    private void addToList(String itemCode) {
+    private void addToList(String itemCode, Map<String, Integer> list) {
 
+        if (!catalogueService.isExist(itemCode)) {
+            // throw exception
+        }
         int count = 0;
+
         if (list.get(itemCode) != null) {
             count = list.get(itemCode);
             count++;
@@ -76,19 +117,28 @@ public class CartServiceImpl
         } else {
             list.put(itemCode, 1);
         }
+
     }
 
     public String getDisplay() {
 
-        return displayService.print(list);
+        String displayList;
+
+        if (freeItems.isEmpty()) {
+            displayList = displayService.print(purchasedItems);
+        } else {
+            displayList = displayService.print(purchasedItems, freeItems);
+        }
+
+        return displayList;
     }
 
     public String getTotalAmount() {
 
         NumberFormat formatter = NumberFormat.getNumberInstance();
-        double total = computeService.getTotalAmount(list);
+        double total = computeService.getTotalAmount(purchasedItems);
 
-        if (promoCode != null) {
+        if (promoRule != null && promoRule.check()) {
             total = 0.9 * total;
         }
 
@@ -97,18 +147,17 @@ public class CartServiceImpl
 
     public void addPromoCode(String promoCode) {
 
-        if (!"I<3AMAYSIM".equalsIgnoreCase(promoCode)) {
+        if (!RuleThree.promoCode.equalsIgnoreCase(promoCode)) {
             // throw exception
         }
 
-        this.promoCode = promoCode;
+        promoRule = new RuleThree(promoCode);
     }
 
     @Override
     public void reset() {
 
-        this.list = new HashMap<String, Integer>();
-        this.promoCode = null;
+        this.purchasedItems = new HashMap<String, Integer>();
 
     }
 

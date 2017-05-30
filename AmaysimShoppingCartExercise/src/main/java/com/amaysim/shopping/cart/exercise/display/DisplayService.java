@@ -10,4 +10,6 @@ public interface DisplayService {
      * @param list
      */
     String print(Map<String, Integer> list);
+
+    String print(Map<String, Integer> purchasedItems, Map<String, Integer> freeItems);
 }

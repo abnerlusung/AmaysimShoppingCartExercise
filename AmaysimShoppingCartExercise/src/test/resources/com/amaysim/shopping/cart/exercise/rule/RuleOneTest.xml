@@ -8,20 +8,7 @@
       http://www.springframework.org/schema/context/spring-context-3.0.xsd  
       http://www.springframework.org/schema/tx 
       http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
- 
   
-    <bean id="displayService" class="org.easymock.EasyMock" factory-method="createMock">
-        <qualifier value ="displayService" />
-        <constructor-arg value="STRICT" index="0" />
-        <constructor-arg value="com.amaysim.shopping.cart.exercise.display.DisplayService" index="1"/>
-    </bean>
-    
-    <bean id="computeService" class="org.easymock.EasyMock" factory-method="createMock">
-        <qualifier value ="computeService" />
-        <constructor-arg value="STRICT" index="0" />
-        <constructor-arg value="com.amaysim.shopping.cart.exercise.compute.ComputeService" index="1"/>
-    </bean>
-
     <bean id="catalogueService" class="org.easymock.EasyMock" factory-method="createMock">
         <qualifier value ="catalogueService" />
         <constructor-arg value="STRICT" index="0" />

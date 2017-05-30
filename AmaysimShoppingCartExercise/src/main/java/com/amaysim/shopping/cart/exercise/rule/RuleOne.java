@@ -3,7 +3,7 @@ package com.amaysim.shopping.cart.exercise.rule;
 import java.util.List;
 import java.util.Map;
 
-import com.amaysim.shopping.cart.exercise.catalogue.CatalogueServiceImpl;
+import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 
 public class RuleOne
@@ -13,14 +13,19 @@ public class RuleOne
 
     private final int PRODUCT_COUNT_CRITERIA = 3;
 
-    private CatalogueServiceImpl catalogueService;
+    private CatalogueService catalogueService;
 
-    public CatalogueServiceImpl getCatalogueService() {
+    public RuleOne(CatalogueService catalogueService) {
+        super();
+        this.catalogueService = catalogueService;
+    }
+
+    public CatalogueService getCatalogueService() {
 
         return catalogueService;
     }
 
-    public void setCatalogueService(CatalogueServiceImpl catalogueService) {
+    public void setCatalogueService(CatalogueService catalogueService) {
 
         this.catalogueService = catalogueService;
     }
@@ -38,7 +43,7 @@ public class RuleOne
     }
 
     @Override
-    public Double apply(Map<String, Integer> list, List<ProductChecker> checklist) {
+    public Double getNewAmount(Map<String, Integer> list, List<ProductChecker> checklist) {
 
         int count = 0;
         int threes;
@@ -85,4 +90,10 @@ public class RuleOne
         return isValid;
     }
 
+    @Override
+    public boolean check() {
+
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
