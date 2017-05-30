@@ -10,6 +10,9 @@ import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 import com.amaysim.shopping.cart.exercise.domain.ProductChecker;
 import com.amaysim.shopping.cart.exercise.rule.Offer;
 
+/**
+ * Responsible for computing the amount of products purchased
+ */
 public class ComputeServiceImpl
     implements ComputeService {
 

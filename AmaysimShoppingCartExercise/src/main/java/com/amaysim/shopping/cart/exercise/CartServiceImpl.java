@@ -58,12 +58,12 @@ public class CartServiceImpl
             // throw exception
         }
 
-        boolean is2gb = itemCode.equalsIgnoreCase("ult_medium");
+        // boolean is2gb = itemCode.equalsIgnoreCase("ult_medium");
         addToList(itemCode);
 
-        if (is2gb) {
-            addToList("1gb");
-        }
+        // if (is2gb) {
+        // addToList("1gb");
+        // }
     }
 
     private void addToList(String itemCode) {

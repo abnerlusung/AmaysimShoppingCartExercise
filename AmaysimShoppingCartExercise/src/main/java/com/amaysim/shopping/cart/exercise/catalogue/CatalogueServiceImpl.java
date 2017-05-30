@@ -10,6 +10,11 @@ public class CatalogueServiceImpl
 
     private ShoppingCatalogueDao shoppingCatalogue;
 
+    public CatalogueServiceImpl(ShoppingCatalogueDao shoppingCatalogue) {
+        super();
+        this.shoppingCatalogue = shoppingCatalogue;
+    }
+
     public ShoppingCatalogueDao getShoppingCatalogue() {
 
         return shoppingCatalogue;

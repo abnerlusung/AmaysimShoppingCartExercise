@@ -9,8 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.amaysim.shopping.cart.exercise.catalogue.CatalogueService;
 
 /**
- *
- *
+ * Responsible for creating the display for the list of products purchased
  */
 public class DisplayServiceImpl
     implements DisplayService {

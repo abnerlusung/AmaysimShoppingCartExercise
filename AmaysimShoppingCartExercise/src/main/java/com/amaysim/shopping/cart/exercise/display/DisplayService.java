@@ -5,6 +5,7 @@ import java.util.Map;
 public interface DisplayService {
 
     /**
+     * Creates the display list of products purchased
      * 
      * @param list
      */
